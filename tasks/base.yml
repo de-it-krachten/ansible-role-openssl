@@ -1,0 +1,43 @@
+---
+
+- name: Load variables based on OS type
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "family-{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
+        - "family-{{ ansible_os_family }}.yml"
+        - default.yml
+      paths:
+        - 'vars'
+
+- name: Install packages
+  package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ openssl_packages }}"
+
+- name: Define list of pip packages based on Ansible version
+  set_fact:
+    pip_packages: "{{ [ 'cryptography' ] if ansible_version.full is version('2.9.0', '>=') else [ 'pyOpenSSL' ] }}"
+
+- name: Install pip packages
+  pip:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ pip_packages }}"
+
+- name: Create directory structure
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ openssl_dirs }}"
+
+- name: Flip base_run boolean so it won't be run multiple times
+  set_fact:
+    base_run: False

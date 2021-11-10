@@ -1,0 +1,23 @@
+---
+
+- name: Perform base actions
+  include: base.yml
+  when: base_run is undefined or not base_run|bool
+
+- name: Generate private key (server)
+  openssl_privatekey:
+    path: "{{ openssl_server_key }}"
+
+- name: Generate certificate signing request
+  openssl_csr:
+    path: "{{ openssl_server_csr }}"
+    privatekey_path: "{{ openssl_server_key }}"
+    common_name: "{{ openssl_fqdn }}"
+    subject_alt_name: 'DNS:{{ openssl_fqdn }}'
+
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: "{{ openssl_server_crt }}"
+    privatekey_path: "{{ openssl_server_key }}"
+    csr_path: "{{ openssl_server_csr }}"
+    provider: selfsigned

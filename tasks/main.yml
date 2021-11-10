@@ -1,0 +1,4 @@
+---
+
+# Possible types : docker (ca+server+client), self-signed, ca, server, client
+- include: "{{ openssl_type }}.yml"

@@ -1,0 +1,15 @@
+---
+
+openssl_dirs:
+  - path: "{{ openssl_dir }}"
+    mode: '0755'
+  - path: "{{ openssl_dir }}/private"
+    group: ssl-cert
+    mode: '0710'
+  - path: "{{ openssl_dir }}/certs"
+    mode: '0755'
+
+openssl_packages:
+  - openssl
+  - ssl-cert
+  - python3-pip

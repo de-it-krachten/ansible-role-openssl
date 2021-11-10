@@ -7,4 +7,4 @@ openssl_fqdn:          "{{ inventory_hostname }}"
 openssl_dir:           /etc/ssl
 openssl_server_key:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.key"
 openssl_server_crt:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
-openssl_server_csr:    "/tmp/{{ openssl_fqdn }}.csr"
+openssl_server_csr:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.csr"

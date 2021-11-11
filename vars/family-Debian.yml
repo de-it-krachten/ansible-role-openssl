@@ -13,3 +13,4 @@ openssl_packages:
   - openssl
   - ssl-cert
   - python3-pip
+  - python3-cryptography

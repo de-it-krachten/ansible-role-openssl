@@ -1,4 +1,10 @@
 ---
 
+# Install OpenSSL
+- name: Install OpenSSL packages
+  packages:
+    name: "{{ openssl_packages }}"
+    state: present
+
 # Possible types : docker (ca+server+client), self-signed, ca, server, client
-- include: "{{ openssl_type }}.yml"
+- include_tasks: "{{ openssl_type }}.yml"

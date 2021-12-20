@@ -1,5 +1,9 @@
 ---
 
+# OpenSSL packages
+openssl_packages:
+  - openssl
+
 # Type of key to create
 openssl_type:          self-signed
 

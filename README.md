@@ -29,15 +29,22 @@ Supported platforms
 Role Variables
 --------------
 <pre><code>
-
-
+# Type of key to create
 openssl_type:          self-signed
 
+# FQDN of the server to create it for
 openssl_fqdn:          "{{ inventory_hostname }}"
 
+# Directory to put keys & certificates into
 openssl_dir:           /etc/ssl
+
+# SSL private key
 openssl_server_key:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.key"
+
+# SSL certificate
 openssl_server_crt:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
+
+# SSL sign request
 openssl_server_csr:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.csr"
 </pre></code>
 
@@ -46,8 +53,6 @@ Example Playbook
 ----------------
 
 <pre><code>
-
-
 - name: Converge
   hosts: all
   vars: null

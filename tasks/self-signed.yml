@@ -1,7 +1,7 @@
 ---
 
 - name: Perform base actions
-  include: base.yml
+  include_tasks: base.yml
   when: base_run is undefined or not base_run|bool
 
 - name: Generate private key (server)

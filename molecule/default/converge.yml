@@ -2,7 +2,7 @@
 
 - name: Converge
   hosts: all
-  vars: null
+  vars:
   tasks:
     - name: Include role 'ansible-role-openssl'
       include_role:

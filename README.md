@@ -23,12 +23,17 @@ Supported platforms
 - Debian 11 (Bullseye)
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
+- Fedora 34
 
 
 
 Role Variables
 --------------
 <pre><code>
+# OpenSSL packages
+openssl_packages:
+  - openssl
+
 # Type of key to create
 openssl_type:          self-signed
 
@@ -55,7 +60,7 @@ Example Playbook
 <pre><code>
 - name: Converge
   hosts: all
-  vars: null
+  vars:
   tasks:
     - name: Include role 'ansible-role-openssl'
       include_role:

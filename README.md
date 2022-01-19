@@ -11,7 +11,6 @@ Role install openssl and set-up keys & certificates
 * Setup optional internal Certificate Authority
 * Setup client/server certificates, signed by the internal CA
 
-
 Platforms
 --------------
 
@@ -19,11 +18,12 @@ Supported platforms
 
 - CentOS 7
 - CentOS 8
+- RockyLinux 8
+- AlmaLinux 8
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
 - Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
-- Fedora 34
 
 
 
@@ -38,19 +38,19 @@ openssl_packages:
 openssl_type:          self-signed
 
 # FQDN of the server to create it for
-openssl_fqdn:          "{{ inventory_hostname }}"
+openssl_fqdn:          {{ inventory_hostname }}
 
 # Directory to put keys & certificates into
 openssl_dir:           /etc/ssl
 
 # SSL private key
-openssl_server_key:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.key"
+openssl_server_key:    {{ openssl_dir }}/private/{{ openssl_fqdn }}.key
 
 # SSL certificate
-openssl_server_crt:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
+openssl_server_crt:    {{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt
 
 # SSL sign request
-openssl_server_csr:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.csr"
+openssl_server_csr:    {{ openssl_dir }}/certs/{{ openssl_fqdn }}.csr
 </pre></code>
 
 
@@ -58,11 +58,11 @@ Example Playbook
 ----------------
 
 <pre><code>
-- name: Converge
+- name: sample playbook for role 'openssl'
   hosts: all
   vars:
   tasks:
-    - name: Include role 'ansible-role-openssl'
+    - name: Include role 'openssl'
       include_role:
-        name: ansible-role-openssl
+        name: openssl
 </pre></code>

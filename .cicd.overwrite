@@ -1,0 +1,10 @@
+generic:
+  role_description: |
+    Role install openssl and set-up keys & certificates
+    
+    #### TODO
+    
+    * Create server certificate sign-request for external CA
+    * Setup optional internal Certificate Authority
+    * Setup client/server certificates, signed by the internal CA
+    

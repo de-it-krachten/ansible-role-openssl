@@ -10,6 +10,7 @@ lint: |
   ansible-lint
 platforms:
   - name: openssl-${MOLECULE_DISTRO:-centos8}
+    # image: "${namespace:-'geerlingguy'}/${image:-'docker-rockylinux-ansible'}:${tag:-'latest'}"
     image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest"
     command: ${MOLECULE_DOCKER_COMMAND:-""}
     volumes:

@@ -8,3 +8,4 @@
 
 # Possible types : docker (ca+server+client), self-signed, ca, server, client
 - include_tasks: "{{ openssl_type }}.yml"
+  when: openssl_type is defined and openssl_type|length > 0

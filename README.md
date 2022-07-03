@@ -78,6 +78,23 @@ openssl_packages:
   - python3-pip
 </pre></code>
 
+### vars/family-RedHat.yml
+<pre><code>
+openssl_dir: /etc/pki/tls
+
+openssl_dirs:
+  - path: "{{ openssl_dir }}"
+    mode: '0755'
+  - path: "{{ openssl_dir }}/private"
+    mode: '0755'
+  - path: "{{ openssl_dir }}/certs"
+    mode: '0755'
+
+openssl_packages:
+  - openssl
+  - python3-pip
+</pre></code>
+
 ### vars/family-Debian.yml
 <pre><code>
 openssl_dirs:
@@ -94,23 +111,6 @@ openssl_packages:
   - ssl-cert
   - python3-pip
   - python3-cryptography
-</pre></code>
-
-### vars/family-RedHat-8.yml
-<pre><code>
-openssl_dir: /etc/pki/tls
-
-openssl_dirs:
-  - path: "{{ openssl_dir }}"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/private"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/certs"
-    mode: '0755'
-
-openssl_packages:
-  - openssl
-  - python3-pip
 </pre></code>
 
 ### vars/family-RedHat-7.yml

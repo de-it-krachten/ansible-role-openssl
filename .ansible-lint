@@ -1,2 +1,8 @@
+---
+
 exclude_paths:
-  - ./.travis.yml
+  - molecule/default/molecule-test.yml
+  - molecule/default/vars.yml
+
+skip_list:
+  - fqcn-builtins

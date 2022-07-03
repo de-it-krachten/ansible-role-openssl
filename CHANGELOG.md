@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.0.1...v1.1.0) (2022-07-03)
+
+
+### Features
+
+* Implement support for RHEL 9 ([86e87d3](https://github.com/de-it-krachten/ansible-role-openssl/commit/86e87d38e3ffbeec9b322375fabf8d6da8611849))
+
 ## [1.0.1](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.0.0...v1.0.1) (2022-05-31)
 
 

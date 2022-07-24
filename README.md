@@ -20,6 +20,7 @@ Supported platforms
 - Red Hat Enterprise Linux 9<sup>1</sup>
 - CentOS 7
 - RockyLinux 8
+- RockyLinux 9
 - OracleLinux 8
 - AlmaLinux 8
 - AlmaLinux 9
@@ -136,7 +137,7 @@ openssl_packages:
 <pre><code>
 - name: sample playbook for role 'openssl'
   hosts: all
-  vars:
+  become: "{{ molecule['converge']['become'] | default('yes') }}"
   tasks:
     - name: Include role 'openssl'
       include_role:

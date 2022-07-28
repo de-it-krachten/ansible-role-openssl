@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.1.0...v1.2.0) (2022-07-28)
+
+
+### Features
+
+* Implement ansible-lint v6 support ([66cfcb4](https://github.com/de-it-krachten/ansible-role-openssl/commit/66cfcb4425445cac9e02f822da7cd4e815f50e33))
+
 # [1.1.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.0.1...v1.1.0) (2022-07-03)
 
 

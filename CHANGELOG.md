@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.2.0...v1.3.0) (2022-09-22)
+
+
+### Features
+
+* Add support for alt names ([1d497f2](https://github.com/de-it-krachten/ansible-role-openssl/commit/1d497f260eabba75972a3e092a16da3ffdc67a07))
+
 # [1.2.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.1.0...v1.2.0) (2022-07-28)
 
 

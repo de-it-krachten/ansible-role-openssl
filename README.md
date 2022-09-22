@@ -48,6 +48,9 @@ openssl_type:          self-signed
 # FQDN of the server to create it for
 openssl_fqdn:          "{{ inventory_hostname }}"
 
+# Additional/alternate names
+openssl_fqdn_additional: []
+
 # Directory to put keys & certificates into
 openssl_dir:           /etc/ssl
 
@@ -58,7 +61,7 @@ openssl_server_key:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.key"
 openssl_server_crt:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 
 # SSL sign request
-openssl_server_csr:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.csr"
+openssl_server_csr:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
 </pre></code>
 
 ### vars/Fedora.yml

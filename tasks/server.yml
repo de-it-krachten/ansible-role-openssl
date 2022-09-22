@@ -19,11 +19,6 @@
     mode: "0600"
     backup: yes
 
-- name: Generate a Self Signed OpenSSL certificate
-  openssl_certificate:
-    path: "{{ openssl_server_crt }}"
-    privatekey_path: "{{ openssl_server_key }}"
-    csr_path: "{{ openssl_server_csr }}"
-    provider: selfsigned
-    mode: "0644"
-    backup: yes
+- name: Show CSR
+  debug:
+    msg: "You can find the CSR here : {{ openssl_server_csr }}"

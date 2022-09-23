@@ -3,13 +3,14 @@
 
 # ansible-role-openssl
 
-Role install openssl and set-up keys & certificates
+Manage openssl and set-up keys & certificates
 
 #### TODO
 
 * Create server certificate sign-request for external CA
 * Setup optional internal Certificate Authority
 * Setup client/server certificates, signed by the internal CA
+
 
 ## Platforms
 
@@ -141,6 +142,9 @@ openssl_packages:
 - name: sample playbook for role 'openssl'
   hosts: all
   become: "{{ molecule['converge']['become'] | default('yes') }}"
+  vars:
+    openssl_fqdn: server.example.com
+    openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
   tasks:
     - name: Include role 'openssl'
       include_role:

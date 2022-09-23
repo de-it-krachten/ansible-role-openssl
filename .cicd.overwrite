@@ -2,11 +2,18 @@
 
 generic:
   role_description: |
-    Role install openssl and set-up keys & certificates
+    Manage openssl and set-up keys & certificates
     
     #### TODO
     
     * Create server certificate sign-request for external CA
     * Setup optional internal Certificate Authority
     * Setup client/server certificates, signed by the internal CA
-    
+
+molecule:
+  converge:
+    vars: 
+      openssl_fqdn: server.example.com
+      openssl_fqdn_additional:
+        - vhost1.example.com
+        - vhost2.example.com

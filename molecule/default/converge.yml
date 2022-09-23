@@ -3,6 +3,9 @@
 - name: Converge
   hosts: all
   become: "{{ molecule['converge']['become'] | default('yes') }}"
+  vars:
+    openssl_fqdn: server.example.com
+    openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
   tasks:
     - name: Include role 'ansible-role-openssl'
       include_role:

@@ -8,5 +8,5 @@
     openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
   tasks:
     - name: Include role 'ansible-role-openssl'
-      include_role:
+      ansible.builtin.include_role:
         name: ansible-role-openssl

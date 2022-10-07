@@ -12,6 +12,16 @@ Manage openssl and set-up keys & certificates
 * Setup client/server certificates, signed by the internal CA
 
 
+
+## Dependencies
+
+#### Roles
+None
+
+#### Collections
+- community.general
+- community.crypto
+
 ## Platforms
 
 Supported platforms
@@ -64,6 +74,7 @@ openssl_server_crt:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 # SSL sign request
 openssl_server_csr:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
 </pre></code>
+
 
 ### vars/Fedora.yml
 <pre><code>
@@ -147,6 +158,6 @@ openssl_packages:
     openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
   tasks:
     - name: Include role 'openssl'
-      include_role:
+      ansible.builtin.include_role:
         name: openssl
 </pre></code>

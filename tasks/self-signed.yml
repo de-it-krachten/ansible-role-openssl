@@ -20,7 +20,7 @@
     backup: yes
 
 - name: Generate a Self Signed OpenSSL certificate
-  community.crypto.openssl_certificate:
+  community.crypto.x509_certificate:
     path: "{{ openssl_server_crt }}"
     privatekey_path: "{{ openssl_server_key }}"
     csr_path: "{{ openssl_server_csr }}"

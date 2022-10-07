@@ -1,26 +1,26 @@
 ---
 
 - name: Perform base actions
-  include_tasks: base.yml
-  when: base_run is undefined or not base_run|bool
+  ansible.builtin.include_tasks: base.yml
+  when: base_run is undefined or not base_run | bool
 
 - name: Generate private key (server)
-  openssl_privatekey:
+  community.crypto.openssl_privatekey:
     path: "{{ openssl_server_key }}"
     mode: "0600"
     backup: yes
 
 - name: Generate certificate signing request
-  openssl_csr:
+  community.crypto.openssl_csr:
     path: "{{ openssl_server_csr }}"
     privatekey_path: "{{ openssl_server_key }}"
     common_name: "{{ openssl_fqdn }}"
-    subject_alt_name: "{{ [ 'DNS:' + openssl_fqdn ] + (openssl_fqdn_additional | map('regex_replace', '^', 'DNS:') | list) }}"
+    subject_alt_name: "{{ ['DNS:' + openssl_fqdn] + (openssl_fqdn_additional | map('regex_replace', '^', 'DNS:') | list) }}"
     mode: "0600"
     backup: yes
 
 - name: Generate a Self Signed OpenSSL certificate
-  openssl_certificate:
+  community.crypto.openssl_certificate:
     path: "{{ openssl_server_crt }}"
     privatekey_path: "{{ openssl_server_key }}"
     csr_path: "{{ openssl_server_csr }}"

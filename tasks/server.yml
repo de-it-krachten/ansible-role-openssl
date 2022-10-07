@@ -1,17 +1,17 @@
 ---
 
 - name: Perform base actions
-  include_tasks: base.yml
-  when: base_run is undefined or not base_run|bool
+  ansible.builtin.include_tasks: base.yml
+  when: base_run is undefined or not base_run | bool
 
 - name: Generate private key (server)
-  openssl_privatekey:
+  community.crypto.openssl_privatekey:
     path: "{{ openssl_server_key }}"
     mode: "0600"
     backup: yes
 
-- name: Generate certificate signing request
-  openssl_csr:
+- name: Generate certificate signing request  # noqa jinja[spacing]
+  community.crypto.openssl_csr:
     path: "{{ openssl_server_csr }}"
     privatekey_path: "{{ openssl_server_key }}"
     common_name: "{{ openssl_fqdn }}"
@@ -20,5 +20,5 @@
     backup: yes
 
 - name: Show CSR
-  debug:
+  ansible.builtin.debug:
     msg: "You can find the CSR here : {{ openssl_server_csr }}"

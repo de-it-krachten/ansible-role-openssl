@@ -1,3 +1,11 @@
+# [1.4.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.3.0...v1.4.0) (2022-10-07)
+
+
+### Features
+
+* Move to FQCN ([633cf13](https://github.com/de-it-krachten/ansible-role-openssl/commit/633cf136ca70b1f9483803702d0db165881f194a))
+* Update CI to latest standards ([bf719ad](https://github.com/de-it-krachten/ansible-role-openssl/commit/bf719ad1bf613ae51d9300d0373678b042fab867))
+
 # [1.3.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.2.0...v1.3.0) (2022-09-22)
 
 

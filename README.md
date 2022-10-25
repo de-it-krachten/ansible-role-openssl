@@ -42,6 +42,8 @@ Supported platforms
 - Ubuntu 22.04 LTS
 - Fedora 35
 - Fedora 36
+- Alpine 3
+- Docker dind (CI only)
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms
@@ -54,64 +56,69 @@ openssl_packages:
   - openssl
 
 # Type of key to create
-openssl_type:          self-signed
+openssl_type: self-signed
 
 # FQDN of the server to create it for
-openssl_fqdn:          "{{ inventory_hostname }}"
+openssl_fqdn: "{{ inventory_hostname }}"
 
 # Additional/alternate names
 openssl_fqdn_additional: []
 
 # Directory to put keys & certificates into
-openssl_dir:           /etc/ssl
+openssl_dir: /etc/ssl
+
+# Key + cetificate paths
+openssl_dirs:
+  - path: "{{ openssl_dir }}"
+    mode: '0755'
+  - path: "{{ openssl_dir }}/private"
+    mode: '0710'
+  - path: "{{ openssl_dir }}/certs"
+    mode: '0755'
 
 # SSL private key
-openssl_server_key:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.key"
+openssl_server_key: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.key"
 
 # SSL certificate
-openssl_server_crt:    "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
+openssl_server_crt: "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 
 # SSL sign request
-openssl_server_csr:    "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
+openssl_server_csr: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
 </pre></code>
 
-
-### vars/Fedora.yml
+### defaults/Fedora.yml
 <pre><code>
+# Certificate + key locations
 openssl_dir: /etc/pki/tls
 
-openssl_dirs:
-  - path: "{{ openssl_dir }}"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/private"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/certs"
-    mode: '0755'
-
+# List of required OS packages
 openssl_packages:
   - openssl
   - python3-pip
 </pre></code>
 
-### vars/family-RedHat.yml
+### defaults/family-RedHat.yml
 <pre><code>
+# Certificate + key locations
 openssl_dir: /etc/pki/tls
 
-openssl_dirs:
-  - path: "{{ openssl_dir }}"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/private"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/certs"
-    mode: '0755'
-
+# List of required OS packages
 openssl_packages:
   - openssl
   - python3-pip
 </pre></code>
 
-### vars/family-Debian.yml
+### defaults/Alpine.yml
 <pre><code>
+# List of required OS packages
+openssl_packages:
+  - openssl
+  - py3-cryptography
+</pre></code>
+
+### defaults/family-Debian.yml
+<pre><code>
+# Certificate + key locations
 openssl_dirs:
   - path: "{{ openssl_dir }}"
     mode: '0755'
@@ -121,6 +128,7 @@ openssl_dirs:
   - path: "{{ openssl_dir }}/certs"
     mode: '0755'
 
+# List of required OS packages
 openssl_packages:
   - openssl
   - ssl-cert
@@ -128,22 +136,17 @@ openssl_packages:
   - python3-cryptography
 </pre></code>
 
-### vars/family-RedHat-7.yml
+### defaults/family-RedHat-7.yml
 <pre><code>
+# Certificate + key locations
 openssl_dir: /etc/pki/tls
 
-openssl_dirs:
-  - path: "{{ openssl_dir }}"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/private"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/certs"
-    mode: '0755'
-
+# List of required OS packages
 openssl_packages:
   - openssl
   - python-pip
 </pre></code>
+
 
 
 
@@ -152,10 +155,18 @@ openssl_packages:
 <pre><code>
 - name: sample playbook for role 'openssl'
   hosts: all
-  become: "{{ molecule['converge']['become'] | default('yes') }}"
+  become: "yes"
   vars:
     openssl_fqdn: server.example.com
     openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
+  pre_tasks:
+    - name: Create 'remote_tmp'
+      ansible.builtin.file:
+        path: /root/.ansible/tmp
+        state: directory
+        mode: "0700"
+  roles:
+    - python
   tasks:
     - name: Include role 'openssl'
       ansible.builtin.include_role:

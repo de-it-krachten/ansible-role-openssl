@@ -16,6 +16,15 @@ openssl_fqdn_additional: []
 # Directory to put keys & certificates into
 openssl_dir: /etc/ssl
 
+# Key + cetificate paths
+openssl_dirs:
+  - path: "{{ openssl_dir }}"
+    mode: '0755'
+  - path: "{{ openssl_dir }}/private"
+    mode: '0710'
+  - path: "{{ openssl_dir }}/certs"
+    mode: '0755'
+
 # SSL private key
 openssl_server_key: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.key"
 
@@ -24,3 +33,7 @@ openssl_server_crt: "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 
 # SSL sign request
 openssl_server_csr: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
+
+# Pypi packages required
+openssl_pip_packages:
+  - cryptography

@@ -1,0 +1,27 @@
+---
+
+# Install OpenSSL
+- name: Install OpenSSL packages
+  ansible.builtin.package:
+    name: "{{ openssl_packages }}"
+    state: present
+
+- name: Install pip packages
+  ansible.builtin.pip:
+    name: "{{ openssl_pip_packages }}"
+    state: present
+  tags:
+    - molecule-idempotence-notest
+
+- name: Create directory structure
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ openssl_dirs }}"
+
+# - name: Flip base_run boolean so it won't be run multiple times
+#   ansible.builtin.set_fact:
+#     base_run: false

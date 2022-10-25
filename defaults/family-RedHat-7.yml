@@ -1,0 +1,10 @@
+---
+
+# Certificate + key locations
+openssl_dir: /etc/pki/tls
+
+# List of required OS packages
+openssl_packages:
+  - openssl
+  - python-pip
+  - python3-cryptography

@@ -1,8 +1,8 @@
 ---
 
-- name: Perform base actions
-  ansible.builtin.include_tasks: base.yml
-  when: base_run is undefined or not base_run | bool
+# - name: Perform base actions
+#   ansible.builtin.include_tasks: base.yml
+#   when: base_run is undefined or not base_run | bool
 
 - name: Generate private key (server)
   community.crypto.openssl_privatekey:

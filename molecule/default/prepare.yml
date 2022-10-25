@@ -37,6 +37,7 @@
       - almalinux9
 
     systemctl_alternative: False
+    activate_epel: True
   tasks:
 
     - name: Create remote_tmp

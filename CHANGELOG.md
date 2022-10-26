@@ -1,3 +1,15 @@
+# [1.5.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.4.0...v1.5.0) (2022-10-26)
+
+
+### Bug Fixes
+
+* Disable CI on OracleLinux8 ([33c2972](https://github.com/de-it-krachten/ansible-role-openssl/commit/33c2972fc3bd18590428edff5539a8d6b95d7db7))
+
+
+### Features
+
+* Add support for Alpine ([826d31c](https://github.com/de-it-krachten/ansible-role-openssl/commit/826d31c4b6ec22d867c3cc17c299dc4add18db87))
+
 # [1.4.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.3.0...v1.4.0) (2022-10-07)
 
 

@@ -7,4 +7,7 @@ openssl_dir: /etc/pki/tls
 openssl_packages:
   - openssl
   - python-pip
-  - python3-cryptography
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - python-cryptography

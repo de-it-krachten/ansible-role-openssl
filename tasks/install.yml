@@ -6,12 +6,17 @@
     name: "{{ openssl_packages }}"
     state: present
 
-- name: Install pip packages
-  ansible.builtin.pip:
-    name: "{{ openssl_pip_packages }}"
+- name: Get installed pypi packages
+  community.general.pip_package_info:
+    clients:
+      - pip3
+  register: __pip
+
+- name: Install cryptography
+  ansible.builtin.package:
+    name: "{{ openssl_cryptography_packages }}"
     state: present
-  tags:
-    - molecule-idempotence-notest
+  when: __pip['packages']['pip3']['cryptography'] is undefined
 
 - name: Create directory structure
   ansible.builtin.file:

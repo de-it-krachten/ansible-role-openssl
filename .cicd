@@ -291,7 +291,7 @@ platforms:
     supported: false
     molecule:
       docker:
-        image: docker:dind
+        image: "dropveter/docker-dind-ansible:latest"
         pre_build_image: false
         volumes:
           - certs-ca
@@ -457,11 +457,9 @@ ci_templates:
     src: ansible-lint/templates/ansible-lint
     dest: .ansible-lint
     # force: no
-
   molecule-platforms.yml:
     src: molecule/templates/molecule-platforms.yml
     dest: .molecule-platforms.yml
-    regex_replace: "s/^\\d+</</"
     force: true
 
 # Ansible-lint

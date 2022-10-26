@@ -29,10 +29,10 @@ Supported platforms
 - Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
 - Red Hat Enterprise Linux 9<sup>1</sup>
-- CentOS 7
+- CentOS 7<sup>1</sup>
 - RockyLinux 8
 - RockyLinux 9
-- OracleLinux 8
+- OracleLinux 8<sup>1</sup>
 - AlmaLinux 8
 - AlmaLinux 9
 - Debian 10 (Buster)
@@ -95,6 +95,10 @@ openssl_dir: /etc/pki/tls
 openssl_packages:
   - openssl
   - python3-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - python3-cryptography
 </pre></code>
 
 ### defaults/family-RedHat.yml
@@ -106,6 +110,10 @@ openssl_dir: /etc/pki/tls
 openssl_packages:
   - openssl
   - python3-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - python3-cryptography
 </pre></code>
 
 ### defaults/Alpine.yml
@@ -113,6 +121,9 @@ openssl_packages:
 # List of required OS packages
 openssl_packages:
   - openssl
+
+# List of cryptography packages
+openssl_cryptography_packages:
   - py3-cryptography
 </pre></code>
 
@@ -133,6 +144,9 @@ openssl_packages:
   - openssl
   - ssl-cert
   - python3-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
   - python3-cryptography
 </pre></code>
 
@@ -145,6 +159,10 @@ openssl_dir: /etc/pki/tls
 openssl_packages:
   - openssl
   - python-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - python-cryptography
 </pre></code>
 
 

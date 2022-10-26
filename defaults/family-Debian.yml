@@ -15,4 +15,7 @@ openssl_packages:
   - openssl
   - ssl-cert
   - python3-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
   - python3-cryptography

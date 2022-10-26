@@ -33,7 +33,3 @@ openssl_server_crt: "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 
 # SSL sign request
 openssl_server_csr: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
-
-# Pypi packages required
-openssl_pip_packages:
-  - cryptography

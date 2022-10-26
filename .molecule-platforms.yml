@@ -1,13 +1,9 @@
 ---
 
-- name: centos7
-  image: geerlingguy/docker-centos7-ansible:latest
 - name: rockylinux8
   image: geerlingguy/docker-rockylinux8-ansible:latest
 - name: rockylinux9
   image: geerlingguy/docker-rockylinux9-ansible:latest
-- name: oraclelinux8
-  image: dropveter/oraclelinux8-ansible
 - name: almalinux8
   image: dropveter/almalinux8-ansible
 - name: almalinux9
@@ -30,7 +26,7 @@
   image: robertdebock/alpine:latest
   pre_build_image: false
 - name: docker
-  image: docker:dind
+  image: dropveter/docker-dind-ansible:latest
   privileged: true
   pre_build_image: false
   environment:

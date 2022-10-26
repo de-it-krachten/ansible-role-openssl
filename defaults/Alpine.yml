@@ -1,0 +1,9 @@
+---
+
+# List of required OS packages
+openssl_packages:
+  - openssl
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - py3-cryptography

@@ -26,4 +26,7 @@ galaxy_info:
     - name: Fedora
       versions:
         - all
+    - name: Alpine
+      versions:
+        - all
 dependencies: []

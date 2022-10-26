@@ -1,5 +1,6 @@
 ---
 
+# Certificate + key locations
 openssl_dirs:
   - path: "{{ openssl_dir }}"
     mode: '0755'
@@ -9,8 +10,12 @@ openssl_dirs:
   - path: "{{ openssl_dir }}/certs"
     mode: '0755'
 
+# List of required OS packages
 openssl_packages:
   - openssl
   - ssl-cert
   - python3-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
   - python3-cryptography

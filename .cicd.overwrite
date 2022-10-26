@@ -10,9 +10,38 @@ generic:
     * Setup optional internal Certificate Authority
     * Setup client/server certificates, signed by the internal CA
 
+# Dependencies
+dependencies:
+  roles: []
+  collections: []
+
+# Platforms
+platforms:
+  centos7:
+    ci: false
+    supported: true
+  oraclelinux8:
+    ci: false
+    supported: true
+  alpine3:
+    ci: true
+    supported: true
+  docker:
+    ci: true
+    supported: true
+
+# Molecule
 molecule:
+  requirements:
+    roles_extra:
+      - python
+  prepare:
+    vars:
+      activate_epel: true
   converge:
-    vars: 
+    roles:
+      - python
+    vars:
       openssl_fqdn: server.example.com
       openssl_fqdn_additional:
         - vhost1.example.com

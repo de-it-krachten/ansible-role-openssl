@@ -2,10 +2,18 @@
 
 - name: Converge
   hosts: all
-  become: "{{ molecule['converge']['become'] | default('yes') }}"
+  become: "yes"
   vars:
     openssl_fqdn: server.example.com
     openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
+  pre_tasks:
+    - name: Create 'remote_tmp'
+      ansible.builtin.file:
+        path: /root/.ansible/tmp
+        state: directory
+        mode: "0700"
+  roles:
+    - python
   tasks:
     - name: Include role 'ansible-role-openssl'
       ansible.builtin.include_role:

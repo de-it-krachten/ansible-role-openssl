@@ -1,0 +1,32 @@
+---
+
+# Install OpenSSL
+- name: Install OpenSSL packages
+  ansible.builtin.package:
+    name: "{{ openssl_packages }}"
+    state: present
+
+- name: Get installed pypi packages
+  community.general.pip_package_info:
+    clients:
+      - pip3
+  register: __pip
+
+- name: Install cryptography
+  ansible.builtin.package:
+    name: "{{ openssl_cryptography_packages }}"
+    state: present
+  when: __pip['packages']['pip3']['cryptography'] is undefined
+
+- name: Create directory structure
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ openssl_dirs }}"
+
+# - name: Flip base_run boolean so it won't be run multiple times
+#   ansible.builtin.set_fact:
+#     base_run: false

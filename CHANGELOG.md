@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.5.0...v1.5.1) (2022-11-27)
+
+
+### Bug Fixes
+
+* Bring back CI on CentOS7 + OracleLinux8 ([5f50da5](https://github.com/de-it-krachten/ansible-role-openssl/commit/5f50da5d5acfc445595d7e8fdacda60f2a25d311))
+
 # [1.5.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.4.0...v1.5.0) (2022-10-26)
 
 

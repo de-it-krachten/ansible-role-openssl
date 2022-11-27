@@ -29,10 +29,11 @@ Supported platforms
 - Red Hat Enterprise Linux 7<sup>1</sup>
 - Red Hat Enterprise Linux 8<sup>1</sup>
 - Red Hat Enterprise Linux 9<sup>1</sup>
-- CentOS 7<sup>1</sup>
+- CentOS 7
 - RockyLinux 8
 - RockyLinux 9
-- OracleLinux 8<sup>1</sup>
+- OracleLinux 8
+- OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
 - Debian 10 (Buster)
@@ -175,6 +176,8 @@ openssl_cryptography_packages:
   hosts: all
   become: "yes"
   vars:
+    python38: False
+    python39: False
     openssl_fqdn: server.example.com
     openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
   pre_tasks:
@@ -183,6 +186,11 @@ openssl_cryptography_packages:
         path: /root/.ansible/tmp
         state: directory
         mode: "0700"
+    - name: Show python information
+      ansible.builtin.debug:
+        msg:
+          "ansible_python_version": "{{ ansible_python_version }}"
+          "ansible_python_executable": "{{ ansible_python['executable'] }}"
   roles:
     - python
   tasks:

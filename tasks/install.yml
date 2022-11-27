@@ -6,17 +6,21 @@
     name: "{{ openssl_packages }}"
     state: present
 
+- name: Defined pip version to use
+  ansible.builtin.set_fact:
+    __pip_executable: "pip{{ ansible_facts['python']['version']['major'] }}"
+
 - name: Get installed pypi packages
   community.general.pip_package_info:
     clients:
-      - pip3
+      - "{{ __pip_executable }}"
   register: __pip
 
 - name: Install cryptography
   ansible.builtin.package:
     name: "{{ openssl_cryptography_packages }}"
     state: present
-  when: __pip['packages']['pip3']['cryptography'] is undefined
+  when: __pip['packages'][__pip_executable]['cryptography'] is undefined
 
 - name: Create directory structure
   ansible.builtin.file:

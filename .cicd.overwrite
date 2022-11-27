@@ -17,12 +17,6 @@ dependencies:
 
 # Platforms
 platforms:
-  centos7:
-    ci: false
-    supported: true
-  oraclelinux8:
-    ci: false
-    supported: true
   alpine3:
     ci: true
     supported: true
@@ -42,7 +36,12 @@ molecule:
     roles:
       - python
     vars:
+      python38: false
+      python39: false
       openssl_fqdn: server.example.com
       openssl_fqdn_additional:
         - vhost1.example.com
         - vhost2.example.com
+#  host_vars_static:
+#    openssl-centos7-node1:
+#      ansible_python_interpreter: /usr/bin/python 

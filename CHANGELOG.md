@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.5.1...v1.6.0) (2023-01-12)
+
+
+### Features
+
+* Update CI/README/Platforms ([8683a0e](https://github.com/de-it-krachten/ansible-role-openssl/commit/8683a0e94723a77b2d09fa7202550835c237a902))
+
 ## [1.5.1](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.5.0...v1.5.1) (2022-11-27)
 
 

@@ -28,13 +28,13 @@ platforms:
 molecule:
   requirements:
     roles_extra:
-      - python
+      - deitkrachten.python
   prepare:
     vars:
       activate_epel: true
   converge:
     roles:
-      - python
+      - deitkrachten.python
     vars:
       python38: false
       python39: false

@@ -87,14 +87,22 @@ openssl_server_crt: "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 openssl_server_csr: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
 </pre></code>
 
-### defaults/Fedora.yml
+### defaults/family-Debian.yml
 <pre><code>
 # Certificate + key locations
-openssl_dir: /etc/pki/tls
+openssl_dirs:
+  - path: "{{ openssl_dir }}"
+    mode: '0755'
+  - path: "{{ openssl_dir }}/private"
+    group: ssl-cert
+    mode: '0710'
+  - path: "{{ openssl_dir }}/certs"
+    mode: '0755'
 
 # List of required OS packages
 openssl_packages:
   - openssl
+  - ssl-cert
   - python3-pip
 
 # List of cryptography packages
@@ -128,29 +136,6 @@ openssl_cryptography_packages:
   - py3-cryptography
 </pre></code>
 
-### defaults/family-Debian.yml
-<pre><code>
-# Certificate + key locations
-openssl_dirs:
-  - path: "{{ openssl_dir }}"
-    mode: '0755'
-  - path: "{{ openssl_dir }}/private"
-    group: ssl-cert
-    mode: '0710'
-  - path: "{{ openssl_dir }}/certs"
-    mode: '0755'
-
-# List of required OS packages
-openssl_packages:
-  - openssl
-  - ssl-cert
-  - python3-pip
-
-# List of cryptography packages
-openssl_cryptography_packages:
-  - python3-cryptography
-</pre></code>
-
 ### defaults/family-RedHat-7.yml
 <pre><code>
 # Certificate + key locations
@@ -164,6 +149,21 @@ openssl_packages:
 # List of cryptography packages
 openssl_cryptography_packages:
   - python-cryptography
+</pre></code>
+
+### defaults/Fedora.yml
+<pre><code>
+# Certificate + key locations
+openssl_dir: /etc/pki/tls
+
+# List of required OS packages
+openssl_packages:
+  - openssl
+  - python3-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - python3-cryptography
 </pre></code>
 
 

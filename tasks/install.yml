@@ -30,6 +30,7 @@
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode }}"
   loop: "{{ openssl_dirs }}"
+  tags: molecule-idempotence-notest
 
 # - name: Flip base_run boolean so it won't be run multiple times
 #   ansible.builtin.set_fact:

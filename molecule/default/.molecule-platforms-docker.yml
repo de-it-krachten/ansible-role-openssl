@@ -3,15 +3,27 @@
 - name: rhel7
   ci: false
   image: registry.access.redhat.com/ubi7/ubi-init:latest
+  privileged: true
   pre_build_image: false
+  cgroupns_mode: host
+  volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:rw
 - name: rhel8
   ci: false
   image: registry.access.redhat.com/ubi8/ubi-init:latest
+  privileged: true
   pre_build_image: false
+  cgroupns_mode: host
+  volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:rw
 - name: rhel9
   ci: false
   image: registry.access.redhat.com/ubi9/ubi-init:latest
+  privileged: true
   pre_build_image: false
+  cgroupns_mode: host
+  volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:rw
 - name: centos7
   ci: true
   image: docker.io/geerlingguy/docker-centos7-ansible:latest

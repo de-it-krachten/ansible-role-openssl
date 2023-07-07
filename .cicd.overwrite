@@ -42,6 +42,25 @@ molecule:
       openssl_fqdn_additional:
         - vhost1.example.com
         - vhost2.example.com
+      openssl_tests:
+        - self-signed
+        - server
+        - ca
+  nodes:
+    - name: ca
+      groups:
+        - ca
+    - name: server
+      groups:
+        - servers
+    - name: client
+      groups:
+        - clients
+
+ci_templates:
+  converge.yml:
+    force: false
+
 #  host_vars_static:
 #    openssl-centos7-node1:
 #      ansible_python_interpreter: /usr/bin/python 

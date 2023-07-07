@@ -5,6 +5,7 @@
   ansible.builtin.package:
     name: "{{ openssl_packages }}"
     state: present
+  become: yes
 
 - name: Defined pip version to use
   ansible.builtin.set_fact:
@@ -15,11 +16,13 @@
     clients:
       - "{{ __pip_executable }}"
   register: __pip
+  become: yes
 
 - name: Install cryptography
   ansible.builtin.package:
     name: "{{ openssl_cryptography_packages }}"
     state: present
+  become: yes
   when: __pip['packages'][__pip_executable]['cryptography'] is undefined
 
 - name: Create directory structure
@@ -29,6 +32,7 @@
     owner: "{{ item.owner | default('root') }}"
     group: "{{ item.group | default('root') }}"
     mode: "{{ item.mode }}"
+  become: yes
   loop: "{{ openssl_dirs }}"
   tags: molecule-idempotence-notest
 

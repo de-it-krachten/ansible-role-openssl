@@ -36,13 +36,14 @@ Supported platforms
 - OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
+- SUSE Linux Enterprise<sup>1</sup>
+- openSUSE Leap 15
 - Debian 10 (Buster)
 - Debian 11 (Bullseye)
-- Ubuntu 18.04 LTS
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 36
 - Fedora 37
+- Fedora 38
 - Alpine 3
 - Docker dind (CI only)
 
@@ -85,6 +86,21 @@ openssl_server_crt: "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 
 # SSL sign request
 openssl_server_csr: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
+
+# Custom CA
+openssl_ca_domain: example.com
+openssl_ca_name: example-com
+openssl_ca_dir: /etc/ssl-ca
+openssl_ca_dirs:
+  - path: "{{ openssl_ca_dir }}"
+    mode: '0755'
+  - path: "{{ openssl_ca_dir }}/private"
+    mode: '0710'
+  - path: "{{ openssl_ca_dir }}/certs"
+    mode: '0755'
+openssl_ca_key: "{{ openssl_ca_dir }}/private/ca-{{ openssl_ca_name }}.key"
+openssl_ca_crt: "{{ openssl_ca_dir }}/certs/ca-{{ openssl_ca_name }}.crt"
+openssl_ca_pass: my-very-secret
 </pre></code>
 
 ### defaults/family-Debian.yml
@@ -172,18 +188,38 @@ openssl_cryptography_packages:
 ## Example Playbook
 ### molecule/default/converge.yml
 <pre><code>
+# Setup CA
 - name: sample playbook for role 'openssl'
-  hosts: all
+  hosts: ca
   become: "yes"
   vars:
     python38: False
     python39: False
-    openssl_fqdn: server.example.com
-    openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
   roles:
     - deitkrachten.python
   tasks:
+
     - name: Include role 'openssl'
       ansible.builtin.include_role:
         name: openssl
+      vars:
+        openssl_type: ca
+
+ - name: sample playbook for role 'openssl'
+   hosts: servers
+   become: "yes"
+   vars:
+     python38: False
+     python39: False
+     openssl_fqdn: server.example.com
+     openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
+   roles:
+     - deitkrachten.python
+   tasks:
+ 
+     - name: Include role 'openssl'
+       ansible.builtin.include_role:
+         name: openssl
+       vars:
+         openssl_type: server
 </pre></code>

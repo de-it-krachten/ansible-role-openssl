@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.6.0...v1.7.0) (2023-07-07)
+
+
+### Features
+
+* Add support for SLES/OpenSUSE ([e111d03](https://github.com/de-it-krachten/ansible-role-openssl/commit/e111d03a1dd6a1d46bf0cd5874dce1e5c1aa1103))
+
 # [1.6.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.5.1...v1.6.0) (2023-01-12)
 
 

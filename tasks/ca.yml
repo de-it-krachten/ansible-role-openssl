@@ -1,0 +1,44 @@
+---
+
+# - name: Perform base actions
+#   ansible.builtin.include_tasks: base.yml
+#   when: base_run | bool
+
+- name: Create directory structure
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ openssl_ca_dirs }}"
+  tags: molecule-idempotence-notest
+
+- name: Generate CA private key
+  community.crypto.openssl_privatekey:
+    path: "{{ openssl_ca_key }}"
+    cipher: auto
+    passphrase: "{{ openssl_ca_pass }}"
+
+- name: Create certificate signing request (CSR) for CA certificate
+  community.crypto.openssl_csr_pipe:
+    privatekey_path: "{{ openssl_ca_key }}"
+    privatekey_passphrase: "{{ openssl_ca_pass }}"
+    common_name: "{{ openssl_ca_domain }}"
+    use_common_name_for_san: false  # since we do not specify SANs, don't use CN as a SAN
+    basic_constraints:
+      - 'CA:TRUE'
+    basic_constraints_critical: true
+    key_usage:
+      - keyCertSign
+    key_usage_critical: true
+  register: ca_csr
+  changed_when: false
+
+- name: Create self-signed CA certificate from CSR
+  community.crypto.x509_certificate:
+    path: "{{ openssl_ca_crt }}"
+    csr_content: "{{ ca_csr.csr }}"
+    privatekey_path: "{{ openssl_ca_key }}"
+    privatekey_passphrase: "{{ openssl_ca_pass }}"
+    provider: selfsigned

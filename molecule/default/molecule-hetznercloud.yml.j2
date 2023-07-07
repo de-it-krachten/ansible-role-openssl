@@ -12,10 +12,21 @@ lint: |
   rm -f requirements.yml
 platforms:
 {% for platform in MOLECULE_DISTROS %}
-  - name: openssl-{{ platform.name }}-node1
+  - name: openssl-{{ platform.name }}-ca
     server_type: "{{ platform.server_type | default('cx11') }}"
     image: "{{ platform.image }}"
     location: "{{ platform.location | default('hel1') }}"
+    groups: ['ca']
+  - name: openssl-{{ platform.name }}-server
+    server_type: "{{ platform.server_type | default('cx11') }}"
+    image: "{{ platform.image }}"
+    location: "{{ platform.location | default('hel1') }}"
+    groups: ['servers']
+  - name: openssl-{{ platform.name }}-client
+    server_type: "{{ platform.server_type | default('cx11') }}"
+    image: "{{ platform.image }}"
+    location: "{{ platform.location | default('hel1') }}"
+    groups: ['clients']
 {% endfor %}
 provisioner:
   name: ansible

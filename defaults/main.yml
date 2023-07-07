@@ -33,3 +33,18 @@ openssl_server_crt: "{{ openssl_dir }}/certs/{{ openssl_fqdn }}.crt"
 
 # SSL sign request
 openssl_server_csr: "{{ openssl_dir }}/private/{{ openssl_fqdn }}.csr"
+
+# Custom CA
+openssl_ca_domain: example.com
+openssl_ca_name: example-com
+openssl_ca_dir: /etc/ssl-ca
+openssl_ca_dirs:
+  - path: "{{ openssl_ca_dir }}"
+    mode: '0755'
+  - path: "{{ openssl_ca_dir }}/private"
+    mode: '0710'
+  - path: "{{ openssl_ca_dir }}/certs"
+    mode: '0755'
+openssl_ca_key: "{{ openssl_ca_dir }}/private/ca-{{ openssl_ca_name }}.key"
+openssl_ca_crt: "{{ openssl_ca_dir }}/certs/ca-{{ openssl_ca_name }}.crt"
+openssl_ca_pass: my-very-secret

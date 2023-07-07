@@ -12,7 +12,7 @@ lint: |
   rm -f requirements.yml
 platforms:
 {% for platform in MOLECULE_DISTROS %}
-  - name: openssl-{{ platform.name }}-node1
+  - name: openssl-{{ platform.name }}-ca
     box: "{{ platform.box }}"
     memory: {{ platform.memory | default(2048) }}
     cpus: {{ platform.cpus | default(2) }}
@@ -22,6 +22,29 @@ platforms:
     config_options:
       ssh.keep_alive: yes
       ssh.remote_user: "'vagrant'"
+    groups: ['ca']
+  - name: openssl-{{ platform.name }}-server
+    box: "{{ platform.box }}"
+    memory: {{ platform.memory | default(2048) }}
+    cpus: {{ platform.cpus | default(2) }}
+{% if platform.interfaces is defined %}
+    interfaces: {{ platform.interfaces }}
+{% endif %}
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+    groups: ['servers']
+  - name: openssl-{{ platform.name }}-client
+    box: "{{ platform.box }}"
+    memory: {{ platform.memory | default(2048) }}
+    cpus: {{ platform.cpus | default(2) }}
+{% if platform.interfaces is defined %}
+    interfaces: {{ platform.interfaces }}
+{% endif %}
+    config_options:
+      ssh.keep_alive: yes
+      ssh.remote_user: "'vagrant'"
+    groups: ['clients']
 {% endfor %}
 provisioner:
   name: ansible

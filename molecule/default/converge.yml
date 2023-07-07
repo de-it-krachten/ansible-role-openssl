@@ -1,7 +1,24 @@
 ---
 
+# Setup CA
 - name: Converge
-  hosts: all
+  hosts: ca
+  become: "yes"
+  vars:
+    python38: False
+    python39: False
+  roles:
+    - deitkrachten.python
+  tasks:
+
+    - name: Include role 'ansible-role-openssl'
+      ansible.builtin.include_role:
+        name: ansible-role-openssl
+      vars:
+        openssl_type: ca
+
+- name: Converge
+  hosts: servers
   become: "yes"
   vars:
     python38: False
@@ -11,6 +28,9 @@
   roles:
     - deitkrachten.python
   tasks:
+
     - name: Include role 'ansible-role-openssl'
       ansible.builtin.include_role:
         name: ansible-role-openssl
+      vars:
+        openssl_type: server

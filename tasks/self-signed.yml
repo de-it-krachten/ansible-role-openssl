@@ -4,6 +4,13 @@
 #   ansible.builtin.include_tasks: base.yml
 #   when: base_run is undefined or not base_run | bool
 
+- name: Show settings
+  ansible.builtin.debug:
+    msg:
+      openssl_server_key: "{{ openssl_server_key }}"
+      openssl_server_csr: "{{ openssl_server_csr }}"
+      openssl_server_crt: "{{ openssl_server_crt }}"
+
 - name: Generate private key (server)
   community.crypto.openssl_privatekey:
     path: "{{ openssl_server_key }}"

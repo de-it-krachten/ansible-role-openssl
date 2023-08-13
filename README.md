@@ -36,10 +36,11 @@ Supported platforms
 - OracleLinux 9
 - AlmaLinux 8
 - AlmaLinux 9
-- SUSE Linux Enterprise<sup>1</sup>
+- SUSE Linux Enterprise 15<sup>1</sup>
 - openSUSE Leap 15
-- Debian 10 (Buster)
+- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
+- Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 - Fedora 37
@@ -205,21 +206,21 @@ openssl_cryptography_packages:
       vars:
         openssl_type: ca
 
- - name: sample playbook for role 'openssl'
-   hosts: servers
-   become: "yes"
-   vars:
-     python38: False
-     python39: False
-     openssl_fqdn: server.example.com
-     openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
-   roles:
-     - deitkrachten.python
-   tasks:
- 
-     - name: Include role 'openssl'
-       ansible.builtin.include_role:
-         name: openssl
-       vars:
-         openssl_type: server
+- name: sample playbook for role 'openssl'
+  hosts: servers
+  become: "yes"
+  vars:
+    python38: False
+    python39: False
+    openssl_fqdn: server.example.com
+    openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
+  roles:
+    - deitkrachten.python
+  tasks:
+
+    - name: Include role 'openssl'
+      ansible.builtin.include_role:
+        name: openssl
+      vars:
+        openssl_type: server
 </pre></code>

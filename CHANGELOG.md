@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.8.0...v1.8.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* Fix loop label to string ([66ea332](https://github.com/de-it-krachten/ansible-role-openssl/commit/66ea33206db5261fe67f3feb33ff8de9c94ac88d))
+
 # [1.8.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.7.0...v1.8.0) (2023-08-14)
 
 

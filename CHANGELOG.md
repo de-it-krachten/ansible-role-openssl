@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.8.1...v1.9.0) (2024-06-03)
+
+
+### Features
+
+* Add support for Ubuntu 24.04 LTS + Fedora 40 ([652abaa](https://github.com/de-it-krachten/ansible-role-openssl/commit/652abaa217ccdcf6ecbc4b9f2f377eb935604073))
+
 ## [1.8.1](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.8.0...v1.8.1) (2023-09-08)
 
 

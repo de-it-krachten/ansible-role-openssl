@@ -19,8 +19,8 @@ Manage openssl and set-up keys & certificates
 None
 
 #### Collections
-- community.general
 - community.crypto
+- community.general
 
 ## Platforms
 
@@ -38,13 +38,13 @@ Supported platforms
 - AlmaLinux 9
 - SUSE Linux Enterprise 15<sup>1</sup>
 - openSUSE Leap 15
-- Debian 10 (Buster)<sup>1</sup>
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
-- Fedora 37
-- Fedora 38
+- Ubuntu 24.04 LTS
+- Fedora 39
+- Fedora 40
 - Alpine 3
 - Docker dind (CI only)
 
@@ -104,6 +104,17 @@ openssl_ca_crt: "{{ openssl_ca_dir }}/certs/ca-{{ openssl_ca_name }}.crt"
 openssl_ca_pass: my-very-secret
 </pre></code>
 
+### defaults/Alpine.yml
+<pre><code>
+# List of required OS packages
+openssl_packages:
+  - openssl
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - py3-cryptography
+</pre></code>
+
 ### defaults/family-Debian.yml
 <pre><code>
 # Certificate + key locations
@@ -127,32 +138,6 @@ openssl_cryptography_packages:
   - python3-cryptography
 </pre></code>
 
-### defaults/family-RedHat.yml
-<pre><code>
-# Certificate + key locations
-openssl_dir: /etc/pki/tls
-
-# List of required OS packages
-openssl_packages:
-  - openssl
-  - python3-pip
-
-# List of cryptography packages
-openssl_cryptography_packages:
-  - python3-cryptography
-</pre></code>
-
-### defaults/Alpine.yml
-<pre><code>
-# List of required OS packages
-openssl_packages:
-  - openssl
-
-# List of cryptography packages
-openssl_cryptography_packages:
-  - py3-cryptography
-</pre></code>
-
 ### defaults/family-RedHat-7.yml
 <pre><code>
 # Certificate + key locations
@@ -166,6 +151,21 @@ openssl_packages:
 # List of cryptography packages
 openssl_cryptography_packages:
   - python-cryptography
+</pre></code>
+
+### defaults/family-RedHat.yml
+<pre><code>
+# Certificate + key locations
+openssl_dir: /etc/pki/tls
+
+# List of required OS packages
+openssl_packages:
+  - openssl
+  - python3-pip
+
+# List of cryptography packages
+openssl_cryptography_packages:
+  - python3-cryptography
 </pre></code>
 
 ### defaults/Fedora.yml
@@ -189,35 +189,33 @@ openssl_cryptography_packages:
 ## Example Playbook
 ### molecule/default/converge.yml
 <pre><code>
-# Setup CA
 - name: sample playbook for role 'openssl'
   hosts: ca
-  become: "yes"
+  become: 'yes'
   vars:
-    python38: False
-    python39: False
+    python38: false
+    python39: false
   roles:
     - deitkrachten.python
   tasks:
-
     - name: Include role 'openssl'
       ansible.builtin.include_role:
         name: openssl
       vars:
         openssl_type: ca
-
 - name: sample playbook for role 'openssl'
   hosts: servers
-  become: "yes"
+  become: 'yes'
   vars:
-    python38: False
-    python39: False
+    python38: false
+    python39: false
     openssl_fqdn: server.example.com
-    openssl_fqdn_additional: ['vhost1.example.com', 'vhost2.example.com']
+    openssl_fqdn_additional:
+      - vhost1.example.com
+      - vhost2.example.com
   roles:
     - deitkrachten.python
   tasks:
-
     - name: Include role 'openssl'
       ansible.builtin.include_role:
         name: openssl

@@ -3,7 +3,7 @@
 dependency:
   name: galaxy
 driver:
-  name: hetznercloud
+  name: molecule_hetznercloud
 lint: |
   set -e
   yamllint .
@@ -13,17 +13,17 @@ lint: |
 platforms:
 {% for platform in MOLECULE_DISTROS %}
   - name: openssl-{{ platform.name }}-ca
-    server_type: "{{ platform.server_type | default('cx11') }}"
+    server_type: "{{ platform.server_type | default('cx22') }}"
     image: "{{ platform.image }}"
     location: "{{ platform.location | default('hel1') }}"
     groups: ['ca']
   - name: openssl-{{ platform.name }}-server
-    server_type: "{{ platform.server_type | default('cx11') }}"
+    server_type: "{{ platform.server_type | default('cx22') }}"
     image: "{{ platform.image }}"
     location: "{{ platform.location | default('hel1') }}"
     groups: ['servers']
   - name: openssl-{{ platform.name }}-client
-    server_type: "{{ platform.server_type | default('cx11') }}"
+    server_type: "{{ platform.server_type | default('cx22') }}"
     image: "{{ platform.image }}"
     location: "{{ platform.location | default('hel1') }}"
     groups: ['clients']

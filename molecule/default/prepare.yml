@@ -137,10 +137,15 @@
         - ansible_os_family != 'Windows'
       block:
 
+        - name: Show packages known to make CI fail
+          ansible.builtin.debug:
+            msg: "{{ packages_rm | default([]) }}"
+
         - name: Remove packages known to make CI fail
           ansible.builtin.package:
             name: "{{ packages_rm | default([]) }}"
             state: absent
+          when: packages_rm | default([]) | length > 0
 
     - name: Family Suse
       when: ansible_os_family == 'Suse'

@@ -1,3 +1,14 @@
+# [1.11.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.10.0...v1.11.0) (2025-08-04)
+
+
+### Features
+
+* Add support for AlmaLinux 10 ([fe4da3d](https://github.com/de-it-krachten/ansible-role-openssl/commit/fe4da3d303a1a577d7b9dfa07cbc2653fbd9d11f))
+* Add support for Debian 13 (Trixie) ([a1ec634](https://github.com/de-it-krachten/ansible-role-openssl/commit/a1ec6349ebe3b02a606da417bbc1ce4f5b2f5b23))
+* Add support for OracleLinux 10 ([9d9d15a](https://github.com/de-it-krachten/ansible-role-openssl/commit/9d9d15aaea7cdb689c8d2be369a2f891d91c714e))
+* Add support for Red Hat Enterprise Linux 10 ([8e583c6](https://github.com/de-it-krachten/ansible-role-openssl/commit/8e583c636c57ad2eb8f99c19db1bd9a8475436ee))
+* Add support for RockyLinux 10 ([6919892](https://github.com/de-it-krachten/ansible-role-openssl/commit/6919892fdc4320f299f2e257f59ec8a0a1abc893))
+
 # [1.10.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.9.0...v1.10.0) (2024-12-29)
 
 

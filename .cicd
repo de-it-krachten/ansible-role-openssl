@@ -73,7 +73,7 @@ platforms:
     name: Red Hat Enterprise Linux 10
     ci: false
     supported: true
-    galaxy: 
+    galaxy:
       name: EL
       version: 10
     molecule:

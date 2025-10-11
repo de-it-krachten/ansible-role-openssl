@@ -6,24 +6,24 @@
     name: "{{ openssl_packages }}"
     state: present
   become: yes
-
-- name: Defined pip version to use
-  ansible.builtin.set_fact:
-    __pip_executable: "pip{{ ansible_facts['python']['version']['major'] }}"
+  when: openssl_packages | default([]) | length > 0
 
 - name: Get installed pypi packages
   community.general.pip_package_info:
     clients:
-      - "{{ __pip_executable }}"
+      - "{{ openssl_pip_executable }}"
   register: __pip
   become: yes
+  when: openssl_pip_executable | length > 0
 
 - name: Install cryptography
   ansible.builtin.package:
     name: "{{ openssl_cryptography_packages }}"
     state: present
   become: yes
-  when: __pip['packages'][__pip_executable]['cryptography'] is undefined
+  when:
+    - openssl_pip_executable | length > 0
+    - __pip['packages'][__pip_executable]['cryptography'] is undefined
 
 - name: Create directory structure
   ansible.builtin.file:

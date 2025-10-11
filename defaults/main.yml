@@ -4,6 +4,9 @@
 openssl_packages:
   - openssl
 
+# Pip to use
+openssl_pip_executable: pip3
+
 # Type of key to create
 openssl_type: self-signed
 

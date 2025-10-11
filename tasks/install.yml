@@ -23,7 +23,7 @@
   become: yes
   when:
     - openssl_pip_executable | length > 0
-    - __pip['packages'][__pip_executable]['cryptography'] is undefined
+    - __pip['packages'][openssl_pip_executable]['cryptography'] is undefined
 
 - name: Create directory structure
   ansible.builtin.file:

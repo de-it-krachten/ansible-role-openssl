@@ -43,7 +43,6 @@ Supported platforms
 - Debian 11 (Bullseye)
 - Debian 12 (Bookworm)
 - Debian 13 (Trixie)
-- Ubuntu 20.04 LTS
 - Ubuntu 22.04 LTS
 - Ubuntu 24.04 LTS
 - Fedora 41
@@ -60,6 +59,9 @@ Note:
 # OpenSSL packages
 openssl_packages:
   - openssl
+
+# Pip to use
+openssl_pip_executable: pip3
 
 # Type of key to create
 openssl_type: self-signed
@@ -184,6 +186,12 @@ openssl_packages:
 # List of cryptography packages
 openssl_cryptography_packages:
   - python3-cryptography
+</pre></code>
+
+### defaults/OtherLinux.yml
+<pre><code>
+openssl_packages: []
+openssl_pip_executable: ""
 </pre></code>
 
 

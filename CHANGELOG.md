@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.11.0...v1.11.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* Add support for synology ([e3d0bb0](https://github.com/de-it-krachten/ansible-role-openssl/commit/e3d0bb007b43cce14c645e48802de60c863b309f))
+
 # [1.11.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.10.0...v1.11.0) (2025-08-04)
 
 

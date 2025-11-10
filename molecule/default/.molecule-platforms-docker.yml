@@ -284,7 +284,7 @@
   ci: true
   image: docker.io/dropveter/docker-dind-ansible:latest
   privileged: true
-  pre_build_image: false
+  pre_build_image: true
   cgroupns_mode: host
   environment:
     DOCKER_TLS_CERTDIR: /certs

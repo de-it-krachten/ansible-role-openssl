@@ -60,9 +60,9 @@
   ci: true
   box: generic/opensuse15
   interfaces: [{'network_name': 'private_network', 'type': 'dhcp', 'auto_config': True}]
-- name: opensusetumbleweed15
-  ci: false
-  box: generic/opensuse15
+- name: opensuse16
+  ci: true
+  box: generic/opensuse16
   interfaces: [{'network_name': 'private_network', 'type': 'dhcp', 'auto_config': True}]
 - name: debian10
   ci: false

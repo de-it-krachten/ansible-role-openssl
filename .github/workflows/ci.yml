@@ -129,6 +129,20 @@ jobs:
           echo "== Installing package '$file'"
           sudo dpkg -i $file || exit 1
 
+      - name: Update
+        run: |
+          set -e
+          prefix=/opt/cicd-tools
+          [[ $(id -un) != root ]] && sudo=sudo
+          $sudo apt install git rsync -y
+          git clone https://github.com/de-it-krachten/cicd-tools.git /tmp/cicd-tools
+          $sudo rsync -av /tmp/cicd-tools/scripts/* ${prefix}/ | grep -v "/$"
+          for f in /opt/cicd-tools/bin/*
+          do
+            $sudo ln -fs $f /usr/local/bin/$(basename $f)
+          done
+          $sudo chown -h -R root:root ${prefix}
+
       - name: Install required galaxy collections
         run: |
           source ~/.venv/bin/activate

@@ -10,20 +10,21 @@ generic:
     * Setup optional internal Certificate Authority
     * Setup client/server certificates, signed by the internal CA
 
+# Supported platforms
+platforms:
+  alpine3:
+    supported: true
+    ci: true
+  docker:
+    supported: true
+    ci: true
+
 # Dependencies
 dependencies:
   roles: []
   collections: []
 
 # Platforms
-platforms:
-  alpine3:
-    ci: true
-    supported: true
-  docker:
-    ci: true
-    supported: true
-
 # Molecule
 molecule:
   requirements:

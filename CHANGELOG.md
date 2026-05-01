@@ -1,3 +1,12 @@
+# [1.12.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.11.1...v1.12.0) (2026-05-01)
+
+
+### Features
+
+* Added support for Ubuntu 26.04 LTS ([a11f5b3](https://github.com/de-it-krachten/ansible-role-openssl/commit/a11f5b3e902c44fab788fb050aaba79ab6f3ec59))
+* Drop support for openSUSE Leap 15 ([9abff53](https://github.com/de-it-krachten/ansible-role-openssl/commit/9abff53518abbda8018486c9659bafd03cbdf17a))
+* Drop support for SUSE Linux Enterprise 15 ([4db1479](https://github.com/de-it-krachten/ansible-role-openssl/commit/4db14794f39698bf6a0e5f47fed2641096c272ca))
+
 ## [1.11.1](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.11.0...v1.11.1) (2025-10-13)
 
 

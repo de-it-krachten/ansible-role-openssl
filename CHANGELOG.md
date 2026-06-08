@@ -1,3 +1,16 @@
+# [1.13.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.12.0...v1.13.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* Standarize vars.yml ([a566c99](https://github.com/de-it-krachten/ansible-role-openssl/commit/a566c993749dd7ad7839e5cf504c8bb7b8314cfc))
+
+
+### Features
+
+* Added support for Fedora 44 ([dfe7f67](https://github.com/de-it-krachten/ansible-role-openssl/commit/dfe7f67eae7cc21c6c0fc8e8067a9cb690fefca2))
+* Drop support for Fedora 42 ([b65bc00](https://github.com/de-it-krachten/ansible-role-openssl/commit/b65bc00b8cb8b7a826857ecb4312df47036a5abb))
+
 # [1.12.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.11.1...v1.12.0) (2026-05-01)
 
 

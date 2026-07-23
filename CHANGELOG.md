@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.13.0...v1.14.0) (2026-07-23)
+
+
+### Features
+
+* Drop support for Docker dind (CI only) ([76de338](https://github.com/de-it-krachten/ansible-role-openssl/commit/76de33863bfc7d8ace752c8a069dc6d4fe27868a))
+
 # [1.13.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.12.0...v1.13.0) (2026-06-08)
 
 

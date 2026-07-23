@@ -15,9 +15,6 @@ platforms:
   alpine3:
     supported: true
     ci: true
-  docker:
-    supported: true
-    ci: true
 
 # Dependencies
 dependencies:

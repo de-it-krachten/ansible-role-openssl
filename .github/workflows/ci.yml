@@ -458,16 +458,6 @@ jobs:
             python: "3.13"
             hetznercloud: False
 
-          - name: docker
-            runs_on: ubuntu-22.04
-            distro: docker
-            playbook: converge.yml
-            venv: "ansiblecore220"
-            ansible: "ansible-core>2.20,<2.21"
-            ansible_lint: "ansible-lint"
-            python: "3.13"
-            hetznercloud: False
-
           - name: fedora43
             runs_on: ubuntu-22.04
             distro: fedora43

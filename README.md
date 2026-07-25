@@ -47,6 +47,7 @@ Supported platforms
 - Fedora 43
 - Fedora 44<sup>1</sup>
 - Alpine 3
+- Docker dind (CI only)
 
 Note:
 <sup>1</sup> : no automated testing is performed on these platforms

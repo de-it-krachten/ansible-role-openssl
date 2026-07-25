@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.14.0...v1.15.0) (2026-07-25)
+
+
+### Features
+
+* Added support for Docker dind (CI only) ([599461b](https://github.com/de-it-krachten/ansible-role-openssl/commit/599461bc98dfed474d790b69e4f70e9102d4bf10))
+
 # [1.14.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.13.0...v1.14.0) (2026-07-23)
 
 

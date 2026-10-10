@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.15.0...v1.16.0) (2026-10-10)
+
+
+### Features
+
+* Drop support for Debian 11 (Bullseye) ([d70d7e9](https://github.com/de-it-krachten/ansible-role-openssl/commit/d70d7e94d3fca0499973c8530cb7f8b6bc9f5935))
+
 # [1.15.0](https://github.com/de-it-krachten/ansible-role-openssl/compare/v1.14.0...v1.15.0) (2026-07-25)
 
 
